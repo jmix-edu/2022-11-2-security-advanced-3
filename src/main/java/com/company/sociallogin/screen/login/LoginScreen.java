@@ -2,10 +2,12 @@ package com.company.sociallogin.screen.login;
 
 import io.jmix.core.MessageTools;
 import io.jmix.core.Messages;
+import io.jmix.core.common.util.ParamsMap;
 import io.jmix.securityui.authentication.AuthDetails;
 import io.jmix.securityui.authentication.LoginScreenSupport;
 import io.jmix.ui.JmixApp;
 import io.jmix.ui.Notifications;
+import io.jmix.ui.WebBrowserTools;
 import io.jmix.ui.action.Action;
 import io.jmix.ui.component.*;
 import io.jmix.ui.navigation.Route;
@@ -52,6 +54,9 @@ public class LoginScreen extends Screen {
 
     @Autowired
     private UiLoginProperties loginProperties;
+
+    @Autowired
+    private WebBrowserTools webBrowserTools;
 
     @Autowired
     private JmixApp app;
@@ -127,11 +132,11 @@ public class LoginScreen extends Screen {
 
     @Subscribe("loginGoogle")
     public void onLoginGoogle(Action.ActionPerformedEvent event) {
-        // todo Show Google authorization page
+        webBrowserTools.showWebPage("/oauth2/authorization/google", ParamsMap.of("target", "_self"));
     }
 
     @Subscribe("loginGitHub")
     public void onLoginGitHub(Action.ActionPerformedEvent event) {
-        // todo Show GitHub authorization page
+        webBrowserTools.showWebPage("/oauth2/authorization/github", ParamsMap.of("target", "_self"));
     }
 }
