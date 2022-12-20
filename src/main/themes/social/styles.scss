@@ -1,0 +1,8 @@
+@import "social-defaults";
+@import "addons";
+@import "social";
+
+.social {
+  @include addons;
+  @include social;
+}
